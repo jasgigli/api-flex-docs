@@ -1,3 +1,51 @@
+/* index.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+  scroll-behavior: smooth;
+}
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Add smooth transitions for elements */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+/* Optional: Custom styling for your components */
+.header {
+  background: var(--header-bg-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar link styles */
+.sidebar-link {
+  @apply flex items-center p-2 rounded-lg transition-all duration-200;
+}
+
+.sidebar-link:hover {
+  @apply bg-blue-500 text-white;
+}
+
+.sidebar-header {
+  @apply text-2xl font-bold text-blue-600 dark:text-blue-400;
+}
+
+footer a {
+  transition: color 0.3s ease;
+}
+
+footer p {
+  margin: 0;
+}
+.nav-link {
+  @apply hover:text-blue-200 transition-colors duration-300;
+}
+button {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
