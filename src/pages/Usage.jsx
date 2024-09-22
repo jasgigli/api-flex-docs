@@ -4,16 +4,17 @@ import CodeBlock from "../components/CodeBlock";
 const Usage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-4 py-8 bg-gray-100 dark:bg-gray-900">
-      <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-6 text-center">
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-600 dark:text-blue-400 mb-6 text-center">
         Usage Examples
       </h1>
-      <p className="text-lg text-center text-gray-700 dark:text-gray-300 mb-8">
+      <p className="text-base sm:text-lg lg:text-xl text-center text-gray-700 dark:text-gray-300 mb-8 max-w-3xl">
         Explore how to use{" "}
         <span className="font-mono text-blue-600">api-flex</span> for your API
-        calls.
+        calls with these comprehensive examples.
       </p>
 
-      <div className="flex flex-col space-y-6 w-full max-w-4xl">
+      {/* Example Cards Container */}
+      <div className="flex flex-col space-y-6 w-full max-w-4xl px-4 md:px-0">
         <ExampleCard
           title="Simple GET Request"
           description="Here’s an example of how to make a simple GET request using api-flex:"
@@ -53,11 +54,12 @@ try {
         />
       </div>
 
+      {/* CTA Section */}
       <div className="mt-10 text-center">
-        <h3 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4">
+        <h3 className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4">
           Ready to Start?
         </h3>
-        <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+        <p className="text-base sm:text-lg lg:text-xl text-gray-700 dark:text-gray-300 mb-6 max-w-xl mx-auto">
           Check out more examples and documentation to enhance your experience
           with <span className="font-mono text-blue-600">api-flex</span>.
         </p>
@@ -89,11 +91,11 @@ const ExampleCard = ({ title, description, code }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 w-full">
-      <h2 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-6 w-full">
+      <h2 className="text-lg sm:text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
         {title}
       </h2>
-      <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">
+      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-2">
         {description}
       </p>
       <CodeBlock code={code} language="javascript" />
