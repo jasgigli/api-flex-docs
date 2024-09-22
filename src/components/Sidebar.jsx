@@ -26,7 +26,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           { path: "/installation", name: "Installation" },
           { path: "/usage", name: "Usage" },
           { path: "/api-examples", name: "API Examples" },
-          { path: "/caching", name: "Caching" },
           { path: "/express-integration", name: "Express Integration" },
           { path: "/comparison", name: "Comparison" },
         ].map((item) => (

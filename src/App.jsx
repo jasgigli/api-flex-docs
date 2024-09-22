@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Installation from "./pages/Installation";
 import Usage from "./pages/Usage";
 import ApiExamples from "./pages/ApiExamples";
-import Caching from "./pages/Caching";
+
 import ExpressIntegration from "./pages/ExpressIntegration";
 import Comparison from "./pages/Comparison";
 import Footer from "./components/Footer";
@@ -38,7 +38,7 @@ function App() {
               <Route path="/installation" element={<Installation />} />
               <Route path="/usage" element={<Usage />} />
               <Route path="/api-examples" element={<ApiExamples />} />
-              <Route path="/caching" element={<Caching />} />
+
               <Route
                 path="/express-integration"
                 element={<ExpressIntegration />}

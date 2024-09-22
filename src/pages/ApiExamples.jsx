@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import CodeBlock from "../components/CodeBlock";
 
 const ApiExamples = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-4 py-8 bg-gray-100 dark:bg-gray-900">
-      <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-6">
+      <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-6 text-center">
         API Examples
       </h1>
       <p className="text-lg text-center text-gray-700 dark:text-gray-300 mb-8">
@@ -13,15 +13,11 @@ const ApiExamples = () => {
         API calls.
       </p>
 
-      {/* GET Request Example */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-2xl w-full mb-8">
-        <h2 className="text-2xl font-semibold text-blue-600 dark:text-blue-400 mb-4">
-          GET Request
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Use the following code to fetch a product from the Fake Store API:
-        </p>
-        <CodeBlock
+      {/* Examples List */}
+      <div className="flex flex-col space-y-6 w-full max-w-4xl">
+        <ApiExampleCard
+          title="GET Request"
+          description="Use the following code to fetch a product from the Fake Store API:"
           code={`import apiFlex from "api-flex";
 
 try {
@@ -30,22 +26,10 @@ try {
 } catch (error) {
   console.error("Failed to fetch product:", error.message);
 }`}
-          language="javascript"
         />
-        <p className="text-gray-600 dark:text-gray-300 mt-4">
-          This code retrieves the product with ID 1 and logs it to the console.
-        </p>
-      </div>
-
-      {/* POST Request Example */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-2xl w-full mb-8">
-        <h2 className="text-2xl font-semibold text-blue-600 dark:text-blue-400 mb-4">
-          POST Request
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Here’s how to create a new product using a POST request:
-        </p>
-        <CodeBlock
+        <ApiExampleCard
+          title="POST Request"
+          description="Here’s how to create a new product using a POST request:"
           code={`import apiFlex from "api-flex";
 
 try {
@@ -58,23 +42,10 @@ try {
 } catch (error) {
   console.error("Failed to create product:", error.message);
 }`}
-          language="javascript"
         />
-        <p className="text-gray-600 dark:text-gray-300 mt-4">
-          This snippet sends a request to create a new product with the
-          specified details.
-        </p>
-      </div>
-
-      {/* PUT Request Example */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-2xl w-full mb-8">
-        <h2 className="text-2xl font-semibold text-blue-600 dark:text-blue-400 mb-4">
-          PUT Request
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Update an existing product using a PUT request:
-        </p>
-        <CodeBlock
+        <ApiExampleCard
+          title="PUT Request"
+          description="Update an existing product using a PUT request:"
           code={`import apiFlex from "api-flex";
 
 try {
@@ -86,23 +57,10 @@ try {
 } catch (error) {
   console.error("Failed to update product:", error.message);
 }`}
-          language="javascript"
         />
-        <p className="text-gray-600 dark:text-gray-300 mt-4">
-          This code updates the product with ID 1 and logs the updated product
-          details.
-        </p>
-      </div>
-
-      {/* DELETE Request Example */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-2xl w-full mb-8">
-        <h2 className="text-2xl font-semibold text-blue-600 dark:text-blue-400 mb-4">
-          DELETE Request
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Remove a product from the store using a DELETE request:
-        </p>
-        <CodeBlock
+        <ApiExampleCard
+          title="DELETE Request"
+          description="Remove a product from the store using a DELETE request:"
           code={`import apiFlex from "api-flex";
 
 try {
@@ -111,12 +69,7 @@ try {
 } catch (error) {
   console.error("Failed to delete product:", error.message);
 }`}
-          language="javascript"
         />
-        <p className="text-gray-600 dark:text-gray-300 mt-4">
-          This code deletes the product with ID 1 and logs a confirmation
-          message.
-        </p>
       </div>
 
       {/* Call to Action */}
@@ -136,6 +89,59 @@ try {
           View Usage Examples
         </a>
       </div>
+    </div>
+  );
+};
+
+// ApiExampleCard Component with Copy Functionality
+const ApiExampleCard = ({ title, description, code }) => {
+  const [copySuccess, setCopySuccess] = useState(false);
+
+  const copyToClipboard = () => {
+    navigator.clipboard
+      .writeText(code)
+      .then(() => {
+        setCopySuccess(true);
+        setTimeout(() => setCopySuccess(false), 2000); // Hide after 2 seconds
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
+  };
+
+  return (
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 w-full">
+      <h2 className="text-2xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
+        {title}
+      </h2>
+      <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">
+        {description}
+      </p>
+      <CodeBlock code={code} language="javascript" />
+      <button
+        onClick={copyToClipboard}
+        className="mt-2 flex items-center px-4 py-2 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-500 transition duration-200"
+        aria-label="Copy code snippet"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 mr-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M16 12v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2m12 0l-4-4m4 4l-4 4m8-8h-6"
+          />
+        </svg>
+        Copy
+      </button>
+      {copySuccess && (
+        <div className="mt-2 text-green-500 text-sm">Copied to clipboard!</div>
+      )}
     </div>
   );
 };
